@@ -129,8 +129,9 @@ func wholeStory(s string) string {
 //    * the list (or empty list) of all words from the story that have the length the same as the average length rounded up and down.
 // Difficulty: Normal
 // Estimated time: 10mins
-// Used time:
+// Used time: 12mins
 func storyStats(s string) (shortestWord string, longestWord string, average float32, averageWords []string) {
+	wordMap := make(map[int][]string)
 	word := ""
 	sumLength := 0
 	wordCount := 0
@@ -152,6 +153,9 @@ func storyStats(s string) (shortestWord string, longestWord string, average floa
 				// calculate the sumLength and wordCount
 				sumLength += wordLength
 				wordCount++
+				// Append to the length -> string array map
+				wordMap[len(word)] = append(wordMap[wordLength], word)
+				word = ""
 			}
 		}
 	}
@@ -159,6 +163,12 @@ func storyStats(s string) (shortestWord string, longestWord string, average floa
 		return
 	}
 	average = float32(sumLength) / float32(wordCount)
+	floorAverage := int(average)
+	averageWords = wordMap[floorAverage]
+	if average > float32(floorAverage) {
+		// if the average is not INT -> get both rounded up and down, append the average + 1 strings to result
+		averageWords = append(averageWords, wordMap[floorAverage+1]...)
+	}
 	return
 }
 
