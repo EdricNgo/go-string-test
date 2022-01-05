@@ -17,7 +17,12 @@ func testValidity(s string) bool {
 		return false
 	}
 	// Loop through the string
-	for _, r := range s {
+	for i, r := range s {
+		if i == len(s)-1 {
+			if !unicode.IsLetter(r) {
+				return false
+			}
+		}
 		//check the charType: 0 - number and 1 - text
 		if charType == 0 {
 			if !unicode.IsDigit(r) {
