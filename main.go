@@ -68,5 +68,13 @@ func testValidity(s string) bool {
 	return true
 }
 
+//  function `averageNumber` takes the string, and returns the average number from all the numbers
+// Difficulty: Easy
+// Estimated time: 5mins
+// Used time:
+func averageNumber(s string) float32 {
+
+}
+
 func main() {
 }
