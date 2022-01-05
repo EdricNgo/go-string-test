@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math/rand"
 	"strconv"
 	"unicode"
 )
@@ -170,6 +171,45 @@ func storyStats(s string) (shortestWord string, longestWord string, average floa
 		averageWords = append(averageWords, wordMap[floorAverage+1]...)
 	}
 	return
+}
+
+// function generate takes boolean flag and generates random correct strings if the parameter is `true` and random incorrect strings if the flag is `false`.
+// Difficulty: Easy
+// Estimated time: 8mins
+// Used time: 8mins
+func generate(valid bool) string {
+	result := ""
+	if valid {
+		const charset = "abcdefghijklmnopqrstuvwxyz" +
+			"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		times := rand.Intn(10)
+		for i := 0; i < times; i++ {
+			result += strconv.Itoa(rand.Intn(10000))
+			result += "-"
+			text := make([]byte, rand.Intn(10)+1)
+			for i := range text {
+				text[i] = charset[rand.Intn(len(charset))]
+			}
+			result += string(text)
+			if i != times-1 {
+				result += "-"
+			}
+		}
+	} else {
+		const charset = "abcdefghijklmnopqrstuvwxyz" +
+			"ABCDEFGHIJKLMNOPQRSTUVWXYZ-123456789"
+		text := make([]byte, rand.Intn(100)+1)
+		for true {
+			for i := range text {
+				text[i] = charset[rand.Intn(len(charset))]
+			}
+			if testValidity(string(text)) == false {
+				break
+			}
+		}
+		result = string(text)
+	}
+	return result
 }
 
 func main() {
