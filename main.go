@@ -122,5 +122,16 @@ func wholeStory(s string) string {
 	return story
 }
 
+// function `storyStats` takes the string and returns :
+//    * the shortest word
+//    * the longest word
+//    * the average word length
+//    * the list (or empty list) of all words from the story that have the length the same as the average length rounded up and down.
+// Difficulty: Normal
+// Estimated time: 10mins
+// Used time:
+func storyStats(s string) (shortestWord string, longestWord string, average float32, averageWords []string) {
+}
+
 func main() {
 }
