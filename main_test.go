@@ -90,3 +90,23 @@ func TestWholeStory(t *testing.T) {
 		t.Errorf(`wholeStory("22-ab-33-caba-44-haha") failed, output expect "ab caba haha" instead of %v`, validStringResult)
 	}
 }
+
+// function TestStoryStat - unit test for storyStats
+// 2 testcases
+// Difficulty: Easy
+// Estimated time: 5mins
+// Used time: 7mins
+func TestStoryStat(t *testing.T) {
+
+	shortestWord, longestWord, average, averageWords := storyStats("")
+	if shortestWord != "" || longestWord != "" || average != 0 || len(averageWords) != 0 {
+		t.Errorf(`storyStats("") failed, output expect "","", 0, [] instead of %v, %v, %v, %v`, shortestWord, longestWord, average, averageWords)
+	}
+
+	shortestWord, longestWord, average, averageWords = storyStats("22-abcd-33-abc-44-def-5-abcdedf-67-tugh-33-abcde")
+	var result [3]string
+	copy(result[:], averageWords)
+	if shortestWord != "abc" || longestWord != "abcdedf" || average != float32(26)/6 || result != [3]string{"abcd", "tugh", "abcde"} {
+		t.Errorf(`storyStats("22-abcd-33-abc-44-def-5-abcdedf-67-tugh") failed, output expect  abc, abcdedf, 4.3333335, [abcd tugh abcde] instead of %v, %v, %v, %v`, shortestWord, longestWord, average, averageWords)
+	}
+}
