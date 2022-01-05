@@ -131,6 +131,35 @@ func wholeStory(s string) string {
 // Estimated time: 10mins
 // Used time:
 func storyStats(s string) (shortestWord string, longestWord string, average float32, averageWords []string) {
+	word := ""
+	sumLength := 0
+	wordCount := 0
+	// Loop throught the string to get the words
+	for i, r := range s {
+		if unicode.IsLetter(r) {
+			word += string(r)
+		}
+		if !unicode.IsLetter(r) || i == len(s)-1 {
+			if len(word) != 0 {
+				// it's a new word, compare with the shortestWord and longestWord
+				wordLength := len(word)
+				if len(shortestWord) > wordLength || shortestWord == "" {
+					shortestWord = word
+				}
+				if len(longestWord) < wordLength {
+					longestWord = word
+				}
+				// calculate the sumLength and wordCount
+				sumLength += wordLength
+				wordCount++
+			}
+		}
+	}
+	if wordCount == 0 {
+		return
+	}
+	average = float32(sumLength) / float32(wordCount)
+	return
 }
 
 func main() {
