@@ -58,3 +58,19 @@ func TestTestValidity(t *testing.T) {
 		t.Errorf(`testValidity("23-ab-33-caba-56-haha") failed, output expect true instead of %v`, validStringResult)
 	}
 }
+
+// function TestAverageNumber - unit test for averageNumber
+// 2 testcases
+// Difficulty: Easy
+// Estimated time: 5mins
+// Used time: 3mins
+func TestAverageNumber(t *testing.T) {
+	emptyStringResult := averageNumber("")
+	if emptyStringResult != 0 {
+		t.Errorf(`averageNumber("") failed, output expect 0 instead of %v`, emptyStringResult)
+	}
+	validStringResult := averageNumber("22-ab-33-caba-44-haha")
+	if validStringResult != 33 {
+		t.Errorf(`averageNumber("22-ab-33-caba-44-haha") failed, output expect 33 instead of %v`, validStringResult)
+	}
+}
