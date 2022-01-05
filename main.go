@@ -97,5 +97,12 @@ func averageNumber(s string) float32 {
 	return 0
 }
 
+//  function `wholeStory` takes the string as an input, and returns boolean flag `true` if the given string complies with the format, or `false` if the string does not comply
+// Difficulty: Easy
+// Estimated time: 5mins
+// Used time:
+func wholeStory(s string) string {
+}
+
 func main() {
 }
