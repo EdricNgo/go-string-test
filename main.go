@@ -100,8 +100,26 @@ func averageNumber(s string) float32 {
 //  function `wholeStory` takes the string as an input, and returns boolean flag `true` if the given string complies with the format, or `false` if the string does not comply
 // Difficulty: Easy
 // Estimated time: 5mins
-// Used time:
+// Used time: 5mins
 func wholeStory(s string) string {
+	story := ""
+	isNewWord := true
+	// Loop throught the string to get letter chars
+	for _, r := range s {
+		if unicode.IsLetter(r) {
+			if isNewWord {
+				if len(story) != 0 {
+					// put a space if it's a new word and not the start of the string.
+					story += " "
+				}
+				isNewWord = false
+			}
+			story += string(r)
+		} else {
+			isNewWord = true
+		}
+	}
+	return story
 }
 
 func main() {
