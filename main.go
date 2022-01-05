@@ -9,21 +9,21 @@ import "unicode"
 // function `testValidity`  takes the string as an input, and returns boolean flag `true` if the given string complies with the format, or `false` if the string does not comply
 // Difficulty: Normal
 // Estimated time: 15mins
-// Used time: 
+// Used time:
 func testValidity(s string) bool {
 	charType := 0
 	isEmpty := true
-	if(len(s) == 0) {
+	if len(s) == 0 {
 		return false
 	}
 	// Loop through the string
 	for _, r := range s {
 		//check the charType: 0 - number and 1 - text
-		if(charType == 0) {
+		if charType == 0 {
 			if !unicode.IsDigit(r) {
 				// r is not a Digit, check if empty number
 				if isEmpty {
-					return false;
+					return false
 				} else {
 					// check the dash
 					if r != '-' {
@@ -36,12 +36,30 @@ func testValidity(s string) bool {
 				}
 			} else {
 				// r is a Digit, continue to check the next char
-				isEmpty = false;
+				isEmpty = false
 			}
 		} else {
-
+			if !unicode.IsLetter(r) {
+				// r is not a letter, check if empty text
+				// check empty text
+				if isEmpty {
+					return false
+				} else {
+					// check the dash
+					if r != '-' {
+						return false
+					} else {
+						// move to check the number
+						charType = 0
+						isEmpty = true
+					}
+				}
+			} else {
+				// r is a letter, continue to check the next char
+				isEmpty = false
+			}
 		}
-    }
+	}
 	return true
 }
 
