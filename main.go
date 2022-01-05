@@ -9,7 +9,7 @@ import "unicode"
 // function `testValidity`  takes the string as an input, and returns boolean flag `true` if the given string complies with the format, or `false` if the string does not comply
 // Difficulty: Normal
 // Estimated time: 15mins
-// Used time:
+// Used time: ~13mins
 func testValidity(s string) bool {
 	charType := 0
 	isEmpty := true
