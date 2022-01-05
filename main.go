@@ -1,6 +1,9 @@
 package main
 
-import "unicode"
+import (
+	"strconv"
+	"unicode"
+)
 
 // Given a string that is a sequence of numbers followed by dash followed by text, eg: `23-ab-48-caba-56-haha`
 //    * The numbers can be assumed to be unsigned integers
@@ -71,9 +74,27 @@ func testValidity(s string) bool {
 //  function `averageNumber` takes the string, and returns the average number from all the numbers
 // Difficulty: Easy
 // Estimated time: 5mins
-// Used time:
+// Used time: 7mins
 func averageNumber(s string) float32 {
-
+	var count, sum float32 = 0, 0
+	numberString := ""
+	// loop through the string to get chars
+	for _, r := range s {
+		if unicode.IsDigit(r) {
+			// get the string of the number
+			numberString += string(r)
+		} else if numberString != "" {
+			// convert the string of the number to number and calculate the count, sum
+			count++
+			number, _ := strconv.Atoi(numberString)
+			sum += float32(number)
+			numberString = ""
+		}
+	}
+	if count != 0 {
+		return sum / count
+	}
+	return 0
 }
 
 func main() {
